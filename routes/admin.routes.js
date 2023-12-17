@@ -25,20 +25,26 @@ const {
 
 const upload = require("../utils/multer.js");
 
-router.route('/login').get(getLogin).post(postLogin);
+router.route('/login')
+        .get(getLogin)
+        .post(postLogin);
 
 router.get("/logout", getLogout);
 
 router.get("/dashboard", getDashboard);
 
-router.route("/add-notice").get(getAddNotice).post(upload.single("uploadFile"),postAddNotice);
+router.route("/add-notice")
+        .get(getAddNotice)
+        .post(upload.single("uploadFile"),postAddNotice);
 
 router.delete("/delete-notice/:id", deleteNotice);
 
 router.get("/update-notice", getUpdateNotice);
 router.patch("/update-notice/:id", updateNotice);
 
-router.route("/add-user").get(getAddUser).post(postAddUser);
+router.route("/add-user")
+        .get(getAddUser)
+        .post(postAddUser);
 
 router.get("/view-users", getViewUser);
 

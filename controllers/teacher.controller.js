@@ -14,7 +14,7 @@ const getLogin = async(req,res) => {
           return res.render("login.ejs");
         }
       } catch (error) {
-        console.log("Error in get login",error.massage);
+        console.log("Error in get login",error.message);
         return res.render("login.ejs");
       }
 }
@@ -43,7 +43,7 @@ const postLogin = async(req,res) => {
   
       return res.cookie("access_token", token).redirect("/teacher/dashboard");
     } catch (error) {
-      console.log("Error in post login",error.massage);
+      console.log("Error in post login",error.message);
       return res.status(500).render("login.ejs");
     }
 };
@@ -83,7 +83,7 @@ const getDashboard = async(req,res) => {
         }
       }
         catch (error) {
-            console.log("Error in get dashboard",error.massage);
+            console.log("Error in get dashboard",error.message);
             return res.redirect("/teacher/login");
         }   
 }

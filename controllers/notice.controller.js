@@ -10,7 +10,7 @@ const getAddNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in get add notice", error.massage);
+        console.log("Error in get add notice", error.message);
         return res.redirect("/");
     }
 }
@@ -18,8 +18,8 @@ const getAddNotice = async(req, res) => {
 const postAddNotice = async(req, res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             let noticeDownloadLink = "";
             if (req.file) {
                 noticeDownloadLink = req.protocol + "://" + req.header.host + "/noticeFiles/" + req.file.filename;
@@ -47,7 +47,7 @@ const postAddNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in post add notice", error.massage);
+        console.log("Error in post add notice", error.message);
         return res.redirect("/");
     }
 }
@@ -55,8 +55,8 @@ const postAddNotice = async(req, res) => {
 const deleteNotice = async(req, res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             const { id } = req.params;
             await Notice.findByIdAndDelete(id);
             if (user.role === "admin") {
@@ -69,7 +69,7 @@ const deleteNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in delete notice", error.massage);
+        console.log("Error in delete notice", error.message);
         return res.redirect("/");
     }
 }
@@ -83,7 +83,7 @@ const getUpdateNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in get add notice", error.massage);
+        console.log("Error in get add notice", error.message);
         return res.redirect("/");
     }
 }
@@ -92,24 +92,31 @@ const getUpdateNotice = async(req, res) => {
 const updateNotice = async(req, res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             let noticeDownloadLink = "";
             if (req.file) {
                 noticeDownloadLink = req.protocol + "://" + req.header.host + "/noticeFiles/" + req.file.filename;
             }
-            const noticeID = uuidv4();
-            let noticeDeleteLink = req.protocol + "://" + req.header.host + "/delete-notice/" + noticeID;
-            const { title, description } = req.body;
-            const newNotice = new Notice({
-                title,
-                description,
-                notice_id: noticeID,
-                download: noticeDownloadLink,
-                noticeDeleteLink,
-                author: user._id,
-                forRole: req.body.forRole,
-                forDepartment: req.body.forDepartment
+            const updatedFields = {};
+            if (req.body.title) {
+                updatedFields.title = req.body.title;
+            }
+            if (req.body.description) {
+                updatedFields.description = req.body.description;
+            }
+            if (req.body.forRole) {
+                updatedFields.forRole = req.body.forRole;
+            }
+            if (req.body.forDepartment) {
+                updatedFields.forDepartment = req.body.forDepartment;
+            }
+            if (req.file) {
+                updatedFields.download = noticeDownloadLink;
+            }
+            const updatedNotice = await Notice.findByIdAndUpdate(req.params.id, updatedFields, {
+                new: true,
+                runValidators: true
             });
             await newNotice.save();
             if (user.role === "admin") {
@@ -121,7 +128,7 @@ const updateNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in post add notice", error.massage);
+        console.log("Error in post add notice", error.message);
         return res.redirect("/");
     }
 }
