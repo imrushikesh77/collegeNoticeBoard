@@ -14,8 +14,8 @@ const getAddUser = async(req,res)=>{
 const postAddUser = async(req,res)=>{
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             const {name,email,password,department,role} = req.body;
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = new User({
@@ -73,8 +73,8 @@ const getViewUser = async(req,res)=>{
 const deleteUser = async(req,res)=>{
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             const {id} = req.params;
             await User.findByIdAndDelete(id);
             if(user.role === "admin"){
@@ -96,19 +96,29 @@ const deleteUser = async(req,res)=>{
 const updateUser = async(req,res)=>{
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             const {id} = req.params;
             const {name,email,password,department,role} = req.body;
             const hashedPassword = await bcrypt.hash(password, 10);
-            await User.findByIdAndUpdate(id,{
-                name,
-                email,
-                password: hashedPassword,
-                department,
-                role,
-                createdBy: user._id
-            });
+            const updatedFields = {};
+            if(name){
+                updatedFields.name = name;
+            }
+            if(email){
+                updatedFields.email = email;
+            }
+            if(password){
+                updatedFields.password = hashedPassword;
+            }
+            if(department){
+                updatedFields.department = department;
+            }
+            if(role){
+                updatedFields.role = role;
+            }
+            const updatedUser = await User.findByIdAndUpdate(id,updatedFields,{new: true, runValidators: true});
+            await updatedUser.save();
             if(user.role === "admin"){
                 return res.redirect("/admin/dashboard");
             }
