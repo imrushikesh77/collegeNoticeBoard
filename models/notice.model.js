@@ -29,6 +29,9 @@ const noticeSchema = new mongoose.Schema({
   forRole:{
     type: [String],
   },
+  forYear: {
+    type: [String],
+  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

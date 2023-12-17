@@ -1,4 +1,7 @@
 const User = require("../models/user.model.js");
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = process.env.SECRET_KEY;
+const bcrypt = require("bcryptjs");
 
 const getAddUser = async(req,res)=>{
     const token = req.cookies.access_token;
@@ -35,7 +38,7 @@ const postAddUser = async(req,res)=>{
         }
       }
         catch (error) {
-            console.log("Error in get add user",error.massage);
+            console.log("Error in get add user",error.message);
             return res.redirect("/");
         }
 }
@@ -43,8 +46,8 @@ const postAddUser = async(req,res)=>{
 const getViewUser = async(req,res)=>{
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             if(user.role === "admin"){
                 let usersCreatedByMe = await User.find({createdBy: user._id}).sort({ createdAt: -1});
                 let usersCreatedByMeCount = usersCreatedByMe.length;
@@ -62,7 +65,7 @@ const getViewUser = async(req,res)=>{
         }
       }
     catch (error) {
-        console.log("Error in view user",error.massage);
+        console.log("Error in view user",error.message);
         return res.redirect("/");
     }
 }
@@ -85,7 +88,7 @@ const deleteUser = async(req,res)=>{
         }
       }
     catch (error) {
-        console.log("Error in delete user",error.massage);
+        console.log("Error in delete user",error.message);
         return res.redirect("/");
     }
 }
@@ -117,7 +120,7 @@ const updateUser = async(req,res)=>{
         }
       }
     catch (error) {
-        console.log("Error in update user",error.massage);
+        console.log("Error in update user",error.message);
         return res.redirect("/");
     }
 }

@@ -10,7 +10,7 @@ const getAddNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in get add notice", error.massage);
+        console.log("Error in get add notice", error.message);
         return res.redirect("/");
     }
 }
@@ -47,7 +47,7 @@ const postAddNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in post add notice", error.massage);
+        console.log("Error in post add notice", error.message);
         return res.redirect("/");
     }
 }
@@ -69,7 +69,7 @@ const deleteNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in delete notice", error.massage);
+        console.log("Error in delete notice", error.message);
         return res.redirect("/");
     }
 }
@@ -83,7 +83,7 @@ const getUpdateNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in get add notice", error.massage);
+        console.log("Error in get add notice", error.message);
         return res.redirect("/");
     }
 }
@@ -121,7 +121,7 @@ const updateNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in post add notice", error.massage);
+        console.log("Error in post add notice", error.message);
         return res.redirect("/");
     }
 }
