@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Create Notice</h1>
-    <form id="noticeForm" action="" method="POST">
+    <form id="noticeForm">
+
         <label for="noticeTitle">Notice Title:</label>
         <input type="text" id="noticeTitle" name="noticeTitle"><br><br>
 
@@ -417,13 +418,11 @@
                 </li>
             </ul>
         </div>
-        
-        <input type="submit" value="Submit" id="lgButton">
+        <button type="submit">Submit</button>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   <script>
 
-    <!-- Add necessary JavaScript libraries -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script> -->
-    <script>
         let forDepartment = [];
         let forYear = [];
         let forProgramme = [];
@@ -446,19 +445,73 @@
             forRole.push(checkbox.value);
         }
     });
-            console.log('Department Types:', forDepartment);
-            console.log('Year Types:', forYear);
-            console.log('Programme Types:', forProgramme);
-            console.log('Role Types:', forRole);
+            // console.log('Department Types:', forDepartment);
+            // console.log('Year Types:', forYear);
+            // console.log('Programme Types:', forProgramme);
+            // console.log('Role Types:', forRole);
+        }
+        document.getElementById('noticeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            logSelectedValues(); 
+        });
+
+        document.getElementById('noticeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const title = document.getElementById('noticeTitle').value;
+    const description = document.getElementById('description').value;
+    const pdfFile = document.getElementById('pdfFile').files[0];
+    const date = document.getElementById('date').value;
+
+    console.log("title", title);
+    console.log("description", description);
+    console.log("pdfFile", pdfFile);
+    console.log("date", date);
+    
+    const form = document.getElementById('noticeForm');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('pdfFile', pdfFile);
+    formData.append('noticeDate', date);
+    for (const department of forDepartment) {
+    formData.append('forDepartment', department);
+    }
+
+    for (const year of forYear) {
+        formData.append('forYear', year);
+    }
+
+    for (const programme of forProgramme) {
+        formData.append('forProgramme', programme);
+    }
+
+    for (const role of forRole) {
+        formData.append('forRole', role);
+    }
+    console.log(formData);
+    const apiUrl = 'http://localhost:8000/notice/add-notice';
+
+    axios.post(apiUrl, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+    .then((response) => {
+        console.log('Notice added successfully', response);
+    })
+    .catch((error) => {
+        console.error('Error in adding notice', error.message);
+    });
+});
+
+        const emptyArray = () => {
             forDepartment = [];
             forYear = [];
             forProgramme = [];
             forRole = [];
         }
-        document.getElementById('noticeForm').addEventListener('submit', function(event) {
-            // event.preventDefault();
-            logSelectedValues(); 
-        });
+        emptyArray();
     </script>
 </body>
 </html>

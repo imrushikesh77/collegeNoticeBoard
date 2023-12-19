@@ -22,7 +22,7 @@ const getLogin = async(req,res) => {
 const postLogin = async(req,res) => {
     const { email, password } = req.body;
     try {
-      const existingUser = await userModel.findOne({ email: email });
+      const existingUser = await User.findOne({ email: email });
       if (!existingUser) {
         return res.status(404).render("login.ejs");
       }
@@ -64,7 +64,6 @@ const getDashboard = async(req,res) => {
                     }
                 }
             ).sort({ createdAt: -1});
-            let users = await User.find({createdBy: user._id}).sort({ createdAt: -1});
             let noticesByMeCount = await Notice.countDocuments({author: user._id});
             let noticesForMeCount = await Notice.countDocuments(
                 {
@@ -76,7 +75,6 @@ const getDashboard = async(req,res) => {
                     }
                 }
             );
-            let userCount = await User.countDocuments({createdBy: user._id});
             return res.render("teacherDashboard.ejs",{noticesByMe,noticesForMe,noticesByMeCount,noticesForMeCount});
         } else {
           return res.redirect("/teacher/login");

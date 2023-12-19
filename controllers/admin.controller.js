@@ -3,10 +3,8 @@ const userModel = require(`../models/user.model.js`);
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
-
 dotenv.config({
     path: "./.env",
-});
 
 const SECRET_KEY = process.env.SECRET_KEY;
 // console.log(SECRET_KEY);
@@ -27,7 +25,7 @@ const getLogin = async(req,res) => {
         }
       } catch (error) {
         console.log("Error in get login",error.message);
-        return res.render("login.ejs" );
+        return res.render("login.ejs");
       }
 }
 
@@ -78,8 +76,7 @@ const getDashboard = async(req,res) => {
       }
         catch (error) {
             console.log("Error in get dashboard",error.message);
-
-            return res.redirect("/admin/login ");
+            return res.redirect("/admin/login");
 
         }   
 }
