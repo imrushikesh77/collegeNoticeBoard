@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./viewUsers.css">
+    <link rel="shortcut icon"
+        href="https://cdn.discordapp.com/attachments/856199547817820162/1024026255043088394/favicon.ico"
+        type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <title>Users</title>
+</head>
+<body>
+    <p id="userData" hidden>
+        <%= JSON.stringify(Array.from(usernotice.entries())) %>
+    </p>
+    <nav class="navbar">
+        <ul class="nav-list">
+            
+                <img href="/" class="WCE_logo" onclick="window.location.href='/'" style="cursor: pointer;"
+                src="https://cdn.discordapp.com/attachments/856199547817820162/1023766795678662716/wceLogoPNG-removebg-preview.png"
+                width="80" height="50" alt="No image">
+       
+
+
+            <li class="nav-items"><a href="/admin-dashboard">Admin Dashboard</a></li>
+            <a class="logoutButton" href="/admin/view-users">View Users</a>
+            <a class="logoutButton" href="/admin/add-user">Add User</a>
+            <a class="logoutButton" href="/create-notice">Create Notice</a>
+            <a class="logoutButton" href="/logout">Logout</a>
+        </ul>
+    </nav>
+
+    <div class="smallerBox">
+        <table class="cardTable" id="usersRender">
+            <tr>
+                <th class="table-heading heading-title">
+                    Name
+                </th>
+                <th class="table-heading heading-dept">
+                    Department
+                </th>
+                <th class="table-heading heading-number">
+                    Number of Notices
+                </th>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="/js/viewUsers.js"></script>
+</html>
