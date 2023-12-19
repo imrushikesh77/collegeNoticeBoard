@@ -1,0 +1,282 @@
+/* ! ALL */
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  /* ! Body */
+  body {
+    background-color: #c3e8fff2;
+  }
+  
+  /* ! Logo */
+  .WCE_logo {
+    position: absolute;
+  }
+  
+  /* ! NavBar */
+  .nav-list {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: #6291c6;
+  }
+  .nav-items {
+    text-decoration: none;
+    list-style: none;
+    font-size: 25px;
+    margin: 20px auto;
+  }
+  
+  .nav-items a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .logoutButton {
+    color: white;
+    margin: 15px 8px;
+    font-size: 20px;
+    border: 0px;
+    background-color: #356193;
+    border-radius: 8px;
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+  
+  /* ! centerBlock */
+  
+  centerBlock {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* ! leftColumn */
+  leftColumn {
+    background-color: #4c4d5f;
+  }
+  
+  /* ! Side Panel */
+  .sidepanel li {
+    list-style: none;
+    font-size: 20px;
+    margin: 10px 20px 25px 0px;
+    padding: 10px;
+    background-color: #707388;
+    border-radius: 0px 10px 10px 0px;
+  }
+  
+  .sidepanel li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .sidepanel li a:hover {
+    color: black;
+  }
+  
+  /* ! rightColumn */
+  rightColumn {
+    background-color: #5e6074;
+    border-radius: 15px 15px 0 0;
+    margin-right: 10px;
+  }
+  
+  /* ! Grid1 */
+  .grid1 {
+    display: grid;
+    grid-template-columns: 20% 80%;
+  }
+  
+  /* ! Tags */
+  
+  .tags {
+    justify-content: center;
+  }
+  
+  .tags button {
+    color: white;
+    margin: 15px 8px;
+    font-size: 20px;
+    border: 0px;
+    background-color: #6291c6;
+    border-radius: 8px;
+    padding: 5px 10px;
+  }
+  
+  .tags label {
+    color: rgb(0, 0, 0);
+    margin: 15px 0px 8px 8px;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 2px 5px;
+  }
+  
+  .tags select {
+    color: black;
+    margin: 15px 10px 8px 0px;
+    font-size: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 2px 5px;
+  }
+  
+  button:active {
+    color: black;
+    background-color: white;
+  }
+  
+  /* ! Search in table */
+  .searchInTable {
+    border: 0px;
+    box-shadow: 0 0 2px rgb(46, 46, 46);
+    border-radius: 5px;
+    height: 30px;
+  }
+  
+  /* ! Smaller Bax */
+  
+  .smallerBox {
+    background-color: #d6e6f2;
+    height: 600px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 15px 10px 0px;
+    overflow-x: auto; /* For hiding scroll bar */
+    overflow-y: auto;
+    scrollbar-width: 0px;
+  }
+  
+  .smallerBox::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  /* ! Table */
+  .table,
+  th,
+  td {
+    border: 1px solid white;
+    border-radius: 2px;
+    border-collapse: collapse;
+    background-color: #f7fbfc;
+  }
+  
+  .cardTable {
+    /* width: 100%; */
+    margin: 10px;
+  }
+  
+  .table-heading {
+    text-align: left;
+    padding: 10px;
+    background-color: #769fcd;
+    color: #ffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .heading-title {
+    width: 13%;
+  }
+  
+  .heading-subtitle {
+    width: 12%;
+  }
+  
+  .heading-number {
+    width: 7%;
+  }
+  .heading-dept {
+    width: 8%;
+  }
+  .heading-description {
+    width: 55%;
+  }
+  .heading-download {
+    width: 5%;
+  }
+  /* .notice-download {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  } */
+  .notice-title {
+    font-weight: bold;
+  }
+  
+  .notice-noticeDeleteLink img {
+    width: 50%;
+    height: 50%;
+  }
+  
+  .notice-noticeDeleteLink button {
+    background-color: white;
+    border: none;
+  }
+  
+  /* ! Cards */
+  
+  .cardgrid-item {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .card h3 {
+    opacity: 50%;
+  }
+  
+  /* ! Media Queries */
+  
+  @media only screen and (max-width: 600px) {
+    .grid1 {
+      display: block;
+    }
+  
+    leftColumn {
+      display: none;
+    }
+  
+    rightColumn {
+      width: 350px;
+    }
+  
+    .card {
+      width: 250px;
+    }
+  
+    .card img {
+      width: 100px;
+      height: 200px;
+    }
+  
+    .cardgrid-item {
+      font-size: 3vw;
+    }
+    .tags form {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .tags select {
+      margin: 0px;
+    }
+  
+    .WCE_logo {
+      display: none;
+    }
+  }
+  
+  @media only screen and (min-height: 800px) {
+    .smallerBox {
+      height: 600px;
+    }
+  }
+  
+  @media only screen and (min-height: 1000px) {
+    .smallerBox {
+      height: 900px;
+    }
+  }

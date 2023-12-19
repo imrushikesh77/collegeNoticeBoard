@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Notice</title>
+    <!-- Add necessary CSS libraries -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        /* Styles for the form and its elements */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styles for the multi-select dropdowns */
+        .checkbox-list {
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .checkbox-list label {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* Adjustments for spacing and visibility of the dropdown structure */
+        #programmeStructure {
+            margin-top: 20px;
+            display: none;
+        }
+        .programme-options {
+            display: none;
+            margin-top: 10px;
+        } 
+
+    </style>
+</head>
+<body>
+    <h1>Create Notice</h1>
+    <form id="noticeForm" action="/submitNotice" method="POST">
+      <label for="noticeTitle">Notice Title:</label>
+        <input type="text" id="noticeTitle" name="noticeTitle"><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="pdfFile">Upload PDF File:</label>
+        <input type="file" id="pdfFile" name="pdfFile"><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+
+      <label for="targetAudience">Target Audience:</label><br>
+      <input type="checkbox" id="targetUG" name="targetAudience" value="UG">
+      <label for="targetUG">UG</label><br>
+      <div id="ugOptions" class="programme-options">
+        <input type="checkbox" id="selectBTech" name="selectProgramme" value="BTech" data-type="programmes">
+        <label for="selectBTech">B.Tech</label><br>
+        <input type="checkbox" id="selectPolytechnic" name="selectProgramme" value="Polytechnic" data-type="programmes">
+        <label for="selectPolytechnic">Polytechnic</label><br>
+      </div>
+
+      <input type="checkbox" id="targetPG" name="targetAudience" value="PG" >
+      <label for="targetPG">PG</label><br>
+      <div id="pgOptions" class="programme-options">
+        <input type="checkbox" id="selectMTech" name="selectProgramme" value="MTech" data-type="programmes">
+        <label for="selectMTech">M.Tech</label><br>
+        <input type="checkbox" id="selectPhD" name="selectProgramme" value="PhD" data-type="programmes">
+        <label for="selectPhD">PhD</label><br>
+      </div><br>
+
+      <div id="programmeStructure" style="display: none;">
+         
+      </div>
+
+      <input type="submit" value="Submit">
+  </form>
+
+    <script>
+        // Your existing functions createMultiSelect and createProgrammeStructure ...
+        let departmentTypeArray = [];
+        let yearTypeArray = [];
+        let programmeTypeArray = [];
+
+        // Function to log selected values to the console
+        function logSelectedValues() {
+            console.log('Department Types:', departmentTypeArray);
+            console.log('Year Types:', yearTypeArray);
+            console.log('Programme Types:', programmeTypeArray);
+        }
+
+        function addCheckboxListeners() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const value = this.value;
+            const type = this.dataset.type;
+            if (this.checked) {
+                if (type === 'departments') {
+                    departmentTypeArray.push({ name: value, type: 'departments' });
+                } else if (type === 'years') {
+                    yearTypeArray.push({ name: value, type: 'years' }); // Push years with type
+                } else if (type === 'programmes') {
+                    programmeTypeArray.push({ name: value, type: 'programmes' });
+                }
+                console.log('Selected:', value, 'Type:', type);
+            } else {
+                // if (type === 'departments') {
+                //     departmentTypeArray = departmentTypeArray.filter(item => item.name !== value);
+                // } else if (type === 'years') {
+                //     yearTypeArray = yearTypeArray.filter(item => item.name !== value);
+                // } else if (type === 'programmes') {
+                //     programmeTypeArray = programmeTypeArray.filter(item => item.name !== value);
+                // }
+                // console.log('Unselected:', value, 'Type:', type);
+            }
+        });
+    });
+}
+        function createCheckboxList(label, options) {
+            const checkboxList = document.createElement('div');
+            checkboxList.className = 'checkbox-list';
+
+            const dropdownLabel = document.createElement('label');
+            dropdownLabel.appendChild(document.createTextNode(label));
+            checkboxList.appendChild(dropdownLabel);
+
+            options.forEach(option => {
+                const checkbox = document.createElement('input');
+                checkbox.setAttribute('type','checkbox');
+                checkbox.value = option;
+                const d = label.split(' ')[1].toLowerCase();
+                if (d === 'years') {
+                    checkbox.setAttribute('data-type','years');
+                    // console.log(checkbox.dataset.type);
+                } else if (d === 'departments') {
+                    checkbox.setAttribute ('data-type','departments');
+                }
+
+                const optionLabel = document.createElement('label');
+                optionLabel.appendChild(checkbox);
+                optionLabel.appendChild(document.createTextNode(option));
+                checkboxList.appendChild(optionLabel);
+            });
+            return checkboxList;
+        }
+        function createProgrammeOptions() {
+            const ugOptionsDiv = document.getElementById('ugOptions');
+            const pgOptionsDiv = document.getElementById('pgOptions');
+            const programmeStructureDiv = document.getElementById('programmeStructure');
+
+            if (document.getElementById('targetUG').checked) {
+                ugOptionsDiv.style.display = 'block';
+                pgOptionsDiv.style.display = 'none';
+                programmeStructureDiv.style.display = 'none';
+                document.getElementById('selectBTech').addEventListener('click', createProgrammeStructure);
+                document.getElementById('selectPolytechnic').addEventListener('click', createProgrammeStructure);
+            } else if (document.getElementById('targetPG').checked) {
+                pgOptionsDiv.style.display = 'block';
+                ugOptionsDiv.style.display = 'none';
+                programmeStructureDiv.style.display = 'none';
+                document.getElementById('selectMTech').addEventListener('click', createProgrammeStructure);
+                document.getElementById('selectPhD').addEventListener('click', createProgrammeStructure);
+            } else {
+                ugOptionsDiv.style.display = 'none';
+                pgOptionsDiv.style.display = 'none';
+                programmeStructureDiv.style.display = 'none';
+            }
+            // addCheckboxListeners();
+        }
+        // addCheckboxListeners();
+        function createProgrammeStructure() {
+            const programmeStructureDiv = document.getElementById('programmeStructure');
+            programmeStructureDiv.innerHTML = '';
+
+            if (document.getElementById('selectBTech').checked) {
+              
+              programmeStructureDiv.style.display = 'block';
+              const btechYearTypes = ['FY', 'SY', 'TY', 'LY'];
+              const btechDeptTypes = ['Civil', 'Mechanical', 'CSE', 'EEE', 'ELE', 'IT'];
+              const btechYearDropdown = createCheckboxList('B.Tech Years', btechYearTypes);
+              const btechDeptDropdown = createCheckboxList('B.Tech Departments', btechDeptTypes);
+              programmeStructureDiv.appendChild(btechYearDropdown);
+              programmeStructureDiv.appendChild(document.createElement('br'))
+              programmeStructureDiv.appendChild(btechDeptDropdown);
+              programmeStructureDiv.appendChild(document.createElement('br'))
+            } else if (document.getElementById('selectPolytechnic').checked) {
+                programmeStructureDiv.style.display = 'block';
+                const polytechnicYearTypes = ['FY', 'SY'];
+                const polytechnicDeptTypes = ['Civil', 'Mechanical', 'Electrical', 'Electronics'];
+                const polytechnicYearDropdown = createCheckboxList('Polytechnic Years', polytechnicYearTypes);
+                const polytechnicDeptDropdown = createCheckboxList('Polytechnic Departments', polytechnicDeptTypes);
+                programmeStructureDiv.appendChild(polytechnicYearDropdown);
+                programmeStructureDiv.appendChild(document.createElement('br'));
+                programmeStructureDiv.appendChild(polytechnicDeptDropdown);
+                programmeStructureDiv.appendChild(document.createElement('br'))
+            } else if (document.getElementById('selectMTech').checked) {
+                programmeStructureDiv.style.display = 'block';
+                const mtechYearTypes = ['FY', 'SY'];
+                const mtechDeptTypes = ['Civil', 'Mechanical', 'CSE', 'EEE', 'ELE', 'IT'];
+                const mtechYearDropdown = createCheckboxList('M.Tech Years', mtechYearTypes);
+                const mtechDeptDropdown = createCheckboxList('M.Tech Departments', mtechDeptTypes);
+                programmeStructureDiv.appendChild(mtechYearDropdown);
+                programmeStructureDiv.appendChild(document.createElement('br'));
+                programmeStructureDiv.appendChild(mtechDeptDropdown);
+                programmeStructureDiv.appendChild(document.createElement('br'));
+            } else if (document.getElementById('selectPhD').checked) {
+                programmeStructureDiv.style.display = 'block';
+                const phdYearTypes = ['FY', 'SY'];
+                const phdDeptTypes = ['Civil', 'Mechanical', 'CSE', 'EEE', 'ELE', 'IT'];
+                const phdYearDropdown = createCheckboxList('PhD Years', phdYearTypes);
+                const phdDeptDropdown = createCheckboxList('PhD Departments', phdDeptTypes);
+                programmeStructureDiv.appendChild(phdYearDropdown);
+                programmeStructureDiv.appendChild(document.createElement('br'));
+                programmeStructureDiv.appendChild(phdDeptDropdown);
+                programmeStructureDiv.appendChild(document.createElement('br'));
+            }
+        }
+addCheckboxListeners();
+document.getElementById('targetUG').addEventListener('click', createProgrammeOptions);
+document.getElementById('targetPG').addEventListener('click', createProgrammeOptions);
+document.getElementById('noticeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            addCheckboxListeners();
+            logSelectedValues(); 
+        });
+</script>
+</body>
+</html>

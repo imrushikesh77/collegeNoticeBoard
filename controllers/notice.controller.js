@@ -1,6 +1,9 @@
 const Notice = require("../models/notice.model.js");
 const uuidv4 = require("uuid").v4;
-
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config({ path: `./config.env` });
+const SECRET_KEY = process.env.SECRET_KEY;
 const getAddNotice = async(req, res) => {
     try {
         let token = req.cookies.access_token;
@@ -18,8 +21,9 @@ const getAddNotice = async(req, res) => {
 const postAddNotice = async(req, res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
+        
         if (token) {
+            let user = jwt.verify(token, SECRET_KEY);
             let noticeDownloadLink = "";
             if (req.file) {
                 noticeDownloadLink = req.protocol + "://" + req.header.host + "/noticeFiles/" + req.file.filename;
@@ -47,7 +51,7 @@ const postAddNotice = async(req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log("Error in post add notice", error.massage);
+        console.log("Error in post add notice", error.message);
         return res.redirect("/");
     }
 }

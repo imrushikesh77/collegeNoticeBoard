@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCE Notice Board</title>
+    <link rel="stylesheet" href="./login.css">
+    <link rel="shortcut icon"
+        href="https://cdn.discordapp.com/attachments/856199547817820162/1024026255043088394/favicon.ico"
+        type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    /*STYLE*/
+</style>
+
+<body>
+    <div class="full-page">
+        <div id="container">
+            <img src="https://cdn.discordapp.com/attachments/856199547817820162/1023766795678662716/wceLogoPNG-removebg-preview.png"
+                class="img">
+            <p>WCE Notice Board</p>
+        </div>
+        <div class="box">
+            <h2>Register</h2>
+            <form method="post" action="">
+                <label for="name">Name</label>
+                <input style="width: 70%;" name="name" type="text" placeholder="  name" class="email"><br>
+                <label for="email">Email</label>
+                <input style="width: 70%;" name="email" type="email" placeholder="  Email" class="email"><br>
+                <label for="department">Dept.</label>
+                <input style="width: 70%;" name="department" type="text" placeholder="  Department" class="email"><br>
+                <label for="password">Password</label>
+                <input style="width: 70%;" name="password" type="password" placeholder="  Password" class="password"><br>
+                <label for="role">Role</label>
+                <select name="role" id="role">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+                <button type="submit" class="login">Add User</button>
+            </form>
+            <h3><a href="/">View Notice</a></h3>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>WCE Notice Board</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon"
+        href="https://cdn.discordapp.com/attachments/856199547817820162/1024026255043088394/favicon.ico"
+        type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    /*STYLE*/
+    .notice-noticeDeleteLink {
+        display: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    .buttons{
+        /* margin: auto; */
+        
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #left-arrow{
+        height: 50px;
+        width: 200px;
+        padding: 10px;
+        cursor: pointer;
+    }
+    #pageNo{
+        height: 150px;
+        width: 200px;
+        padding-top: 65px;
+        cursor: pointer;
+    }
+    #right-arrow{
+        height: 50px;
+        width: 200px;
+        padding: 10px;
+        cursor: pointer;
+    }
+    .Forms{
+        display: flex;
+        width: 93%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    th {
+    background-color: #f2f2f2; 
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0; 
+    z-index: 2; 
+}
+</style>
+
+<body>
+    <p id="noticeData" hidden>
+        <%= JSON.stringify(notice) %>
+    </p>
+    <p id="count" hidden><%= count %></p>
+    
+    <nav class="navbar">
+        <ul class="nav-list">
+            <img href="/" class="WCE_logo" onclick="window.location.href='/'" style="cursor: pointer;"
+            src="https://cdn.discordapp.com/attachments/856199547817820162/1023766795678662716/wceLogoPNG-removebg-preview.png"
+            width="80" height="50" alt="No image">
+            <li class="nav-items"><a href="/">WCE Notice Board</a></li>
+
+            <a href="/loginoptions" class="logoutButton">Login</a>
+        </ul>
+    </nav>
+
+    <rightColumn class="grid1-item">
+        <div class="tags">
+            <form action="/">
+
+                <label for="startDate">From:</label>
+                <input type="date" name="startDate" id="">
+
+                <label for="endDate">To:</label>
+                <input type="date" name="endDate" id="">
+
+                <label for="type">For:</label>
+                <select name="type" id="type">
+                    <option value="Everyone">Everyone</option>
+                    <option value="BTech">BTech</option>
+                    <option value="MTech">MTech</option>
+                    <option value="Diploma">Diploma</option>
+                </select>
+
+                <label for="year">Year:</label>
+                <select name="year" id="year">
+                    <option value="Everyone" selected>Everyone</option>
+                    <option value="First Year">First Year</option>
+                    <option value="Second Year">Second Year</option>
+                    <option value="Third Year">Third Year</option>
+                    <option value="Fourth Year">Fourth Year</option>
+                </select>
+
+                <label for="branch">Branch:</label>
+                <select name="branch" id="branch">
+                    <option value="Everyone" selected>Everyone</option>
+                    <option value="Computer Science">Computer Science Engineering</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Electronics Engineering">Electronics Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                </select>
+
+                <button type="submit">Sort</button>
+            </form>
+            <div class="Forms">
+                <form id="searchForm">
+                    <label for="search">Search:</label>
+                    <select name="select" id="theSelect" class="searchInTable">
+                        <option value="title">Title</option>
+                        <option value="description">Description</option>
+                        <option value="date">Date</option>
+                        <option value="noticeId">Notice Id</option>
+                    </select>
+                    <input class="searchInTable" type="text" name="search" id="theSearchQuery">
+                    <button type="submit">Search</button>
+                </form>
+                <h3>Total Notices: <%= count %></h3>  
+                <div class="buttons">
+                    <img src="/resources/left-arrow.png" alt="left-arrow" id="left-arrow">
+                    <p id="pageNo"> 
+                        
+                    </p>
+                    <img src="/resources/right-arrow.png" alt="right-arrow" id="right-arrow">
+                </div>
+            </div>
+        </div>
+        <!-- Your existing code -->
+
+<!-- Your existing code -->
+
+        <div class="smallerBox">
+            <table class="cardTable" id="noticesRender">
+                <tr>
+                    <th class="table-heading heading-title">
+                        Title
+                    </th>
+                    <!-- <th class="table-heading heading-subtitle">
+                        SubTitle
+                    </th> -->
+                    <th class="table-heading heading-date">
+                        Date
+                    </th>
+                    <th class="table-heading heading-id">
+                        Notice-id
+                    </th>
+                    <th class="table-heading heading-description">
+                        Description
+                    </th>
+                    <th class="table-heading heading-download">
+                        Download
+                    </th>
+                </tr>
+
+
+            </table>
+        </div>
+    </rightColumn>
+    
+    
+   
+    <!-- <div id="exp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed vel quod beatae, quas quia provident!</div> -->
+    <script src="/js/searchFiltering.js"></script>
+</body>
+<script>
+    
+</script>
+</html>

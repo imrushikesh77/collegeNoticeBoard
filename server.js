@@ -1,11 +1,11 @@
 const app = require('./app');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-dotenv.config({path: './.env'});
+dotenv.config({path: `./config.env`});
 
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
-
+// console.log(MONGO_URI);
 async function connectDB(){
     try{
         await mongoose.connect(MONGO_URI);

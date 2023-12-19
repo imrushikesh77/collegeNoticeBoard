@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Notice</title>
+    <!-- Add necessary CSS libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Create Notice</h1>
+    <form id="noticeForm" action="" method="POST">
+        <label for="noticeTitle">Notice Title:</label>
+        <input type="text" id="noticeTitle" name="noticeTitle"><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="pdfFile">Upload PDF File:</label>
+        <input type="file" id="pdfFile" name="pdfFile"><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+
+        <label for="targetAudience">Target Audience:</label><br>
+        <div class="navbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Programme
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <input type="checkbox" id="targetUG" name="targetAudience" value="UG">
+                            <label for="targetUG">UG</label><br>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <input type="checkbox" id="btech" name="targetUGProgrammes" value="B.Tech">
+                                    <label for="btech">B.Tech</label><br>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="btechFY" name="btechYearTypes" value="FY">
+                                            <label for="btechFY">FY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="btechFYIT" name="btechFYDeptType" value="IT">
+                                                    <label for="btechFYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechFYCSE" name="btechFYDeptType" value="CSE">
+                                                    <label for="btechFYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechFYCivil" name="btechFYDeptType" value="Civil">
+                                                    <label for="btechFYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechFYMechanical" name="btechFYDeptType" value="Mechanical">
+                                                    <label for="btechFYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechFYElectrical" name="btechFYDeptType" value="Electrical">
+                                                    <label for="btechFYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechFYElectronics" name="btechFYDeptType" value="Electronics">
+                                                    <label for="btechFYElectronics">Electronics</label><br>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="btechSY" name="btechYearTypes" value="SY">
+                                            <label for="btechSY">SY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="btechSYIT" name="btechSYDeptType" value="IT">
+                                                    <label for="btechSYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechSYCSE" name="btechSYDeptType" value="CSE">
+                                                    <label for="btechSYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechSYCivil" name="btechSYDeptType" value="Civil">
+                                                    <label for="btechSYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechSYMechanical" name="btechSYDeptType" value="Mechanical">
+                                                    <label for="btechSYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechSYElectrical" name="btechSYDeptType" value="Electrical">
+                                                    <label for="btechSYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechSYElectronics" name="btechSYDeptType" value="Electronics">
+                                                    <label for="btechSYElectronics">Electronics</label><br>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="btechTY" name="btechYearTypes" value="TY">
+                                            <label for="btechTY">TY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="btechTYIT" name="btechTYDeptType" value="IT">
+                                                    <label for="btechTYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechTYCSE" name="btechTYDeptType" value="CSE">
+                                                    <label for="btechTYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechTYCivil" name="btechTYDeptType" value="Civil">
+                                                    <label for="btechTYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechTYMechanical" name="btechTYDeptType" value="Mechanical">
+                                                    <label for="btechTYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechTYElectrical" name="btechTYDeptType" value="Electrical">
+                                                    <label for="btechTYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechTYElectronics" name="btechTYDeptType" value="Electronics">
+                                                    <label for="btechTYElectronics">Electronics</label><br>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="btechLY" name="btechYearTypes" value="LY">
+                                            <label for="btechLY">LY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="btechLYIT" name="btechLYDeptType" value="IT">
+                                                    <label for="btechLYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechLYCSE" name="btechLYDeptType" value="CSE">
+                                                    <label for="btechLYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechLYCivil" name="btechLYDeptType" value="Civil">
+                                                    <label for="btechLYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechLYMechanical" name="btechLYDeptType" value="Mechanical">
+                                                    <label for="btechLYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechLYElectrical" name="btechLYDeptType" value="Electrical">
+                                                    <label for="btechLYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="btechLYElectronics" name="btechLYDeptType" value="Electronics">
+                                                    <label for="btechLYElectronics">Electronics</label><br>
+                                                </li>
+                                                <!-- Add more departments -->
+                                            </ul>
+                                            
+                                        </li>
+                                        <!-- Add more years -->
+                                    </ul>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="polytechnic" name="targetUGProgrammes" value="Polytechnic">
+                                    <label for="polytechnic">Polytechnic</label><br>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="polytechnicFY" name="polytechnicYearTypes" value="FY">
+                                            <label for="polytechnicFY">FY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicFYElectrical" name="polytechnicFYDeptType" value="Electrical">
+                                                    <label for="polytechnicFYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicFYMechanical" name="polytechnicFYDeptType" value="Mechanical">
+                                                    <label for="polytechnicFYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicFYCivil" name="polytechnicFYDeptType" value="Civil">
+                                                    <label for="polytechnicFYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicFYElectronics" name="polytechnicFYDeptType" value="Electronics">
+                                                    <label for="polytechnicFYElectronics">Electronics</label><br>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="polytechnicSY" name="polytechnicYearTypes" value="SY">
+                                            <label for="polytechnicSY">SY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicSYElectrical" name="polytechnicSYDeptType" value="Electrical">
+                                                    <label for="polytechnicSYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicSYMechanical" name="polytechnicSYDeptType" value="Mechanical">
+                                                    <label for="polytechnicSYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicSYCivil" name="polytechnicSYDeptType" value="Civil">
+                                                    <label for="polytechnicSYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicSYElectronics" name="polytechnicSYDeptType" value="Electronics">
+                                                    <label for="polytechnicSYElectronics">Electronics</label><br>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="polytechnicTY" name="polytechnicYearTypes" value="TY">
+                                            <label for="polytechnicTY">TY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicTYElectrical" name="polytechnicTYDeptType" value="Electrical">
+                                                    <label for="polytechnicTYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicTYMechanical" name="polytechnicTYDeptType" value="Mechanical">
+                                                    <label for="polytechnicTYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicTYCivil" name="polytechnicTYDeptType" value="Civil">
+                                                    <label for="polytechnicTYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="polytechnicTYElectronics" name="polytechnicTYDeptType" value="Electronics">
+                                                    <label for="polytechnicTYElectronics">Electronics</label><br>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="targetPG" name="targetAudience" value="PG">
+                            <label for="targetPG">PG</label><br>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <input type="checkbox" id="mtech" name="targetPGProgrammes" value="M.Tech">
+                                    <label for="mtech">M.Tech</label><br>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="mtechFY" name="mtechYearTypes" value="FY">
+                                            <label for="mtechFY">FY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="mtechFYIT" name="mtechFYDeptType" value="IT">
+                                                    <label for="mtechFYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechFYCSE" name="mtechFYDeptType" value="CSE">
+                                                    <label for="mtechFYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechFYCivil" name="mtechFYDeptType" value="Civil">
+                                                    <label for="mtechFYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechFYMechanical" name="mtechFYDeptType" value="Mechanical">
+                                                    <label for="mtechFYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechFYElectrical" name="mtechFYDeptType" value="Electrical">
+                                                    <label for="mtechFYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechFYElectronics" name="mtechFYDeptType" value="Electronics">
+                                                    <label for="mtechFYElectronics">Electronics</label><br>
+                                                </li>
+                                                <!-- Add more departments -->
+                                            </ul>
+                                            
+                                        </li>
+                                        <!-- Add more years -->
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="mtechSY" name="mtechYearTypes" value="SY">
+                                            <label for="mtechSY">SY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="mtechSYIT" name="mtechSYDeptType" value="IT">
+                                                    <label for="mtechSYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechSYCSE" name="mtechSYDeptType" value="CSE">
+                                                    <label for="mtechSYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechSYCivil" name="mtechSYDeptType" value="Civil">
+                                                    <label for="mtechSYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechSYMechanical" name="mtechSYDeptType" value="Mechanical">
+                                                    <label for="mtechSYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechSYElectrical" name="mtechSYDeptType" value="Electrical">
+                                                    <label for="mtechSYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechSYElectronics" name="mtechSYDeptType" value="Electronics">
+                                                    <label for="mtechSYElectronics">Electronics</label><br>
+                                                </li>
+                                                <!-- Add more departments -->
+                                            </ul>
+                                            
+                                        </li>
+                                        <!-- Add more years -->
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="mtechTY" name="mtechYearTypes" value="TY">
+                                            <label for="mtechTY">TY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="mtechTYIT" name="mtechTYDeptType" value="IT">
+                                                    <label for="mtechTYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechTYCSE" name="mtechTYDeptType" value="CSE">
+                                                    <label for="mtechTYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechTYCivil" name="mtechTYDeptType" value="Civil">
+                                                    <label for="mtechTYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechTYMechanical" name="mtechTYDeptType" value="Mechanical">
+                                                    <label for="mtechTYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechTYElectrical" name="mtechTYDeptType" value="Electrical">
+                                                    <label for="mtechTYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechTYElectronics" name="mtechTYDeptType" value="Electronics">
+                                                    <label for="mtechTYElectronics">Electronics</label><br>
+                                                </li>
+                                                <!-- Add more departments -->
+                                            </ul>
+                                            
+                                        </li>
+                                        <!-- Add more years -->
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="checkbox" id="mtechLY" name="mtechYearTypes" value="LY">
+                                            <label for="mtechLY">LY</label><br>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <input type="checkbox" id="mtechLYIT" name="mtechLYDeptType" value="IT">
+                                                    <label for="mtechLYIT">IT</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechLYCSE" name="mtechLYDeptType" value="CSE">
+                                                    <label for="mtechLYCSE">CSE</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechLYCivil" name="mtechLYDeptType" value="Civil">
+                                                    <label for="mtechLYCivil">Civil</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechLYMechanical" name="mtechLYDeptType" value="Mechanical">
+                                                    <label for="mtechLYMechanical">Mechanical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechLYElectrical" name="mtechLYDeptType" value="Electrical">
+                                                    <label for="mtechLYElectrical">Electrical</label><br>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mtechLYElectronics" name="mtechLYDeptType" value="Electronics">
+                                                    <label for="mtechLYElectronics">Electronics</label><br>
+                                                </li>
+                                                <!-- Add more departments -->
+                                            </ul>
+                                            
+                                        </li>
+                                        <!-- Add more years -->
+                                    </ul>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="phd" name="targetPGProgrammes" value="PhD">
+                                    <label for="phd">PhD</label><br>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <input type="checkbox" id="Student" name="student" value="student">
+                            <label for="All">Student</label><br>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="Faculty" name="faculty" value="faculty">
+                            <label for="Faculty">Faculty</label><br>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="HOD" name="HOD" value="HOD">
+                            <label for="HOD">HOD</label><br>
+                        </li>
+                        <!-- Add more departments -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <input type="submit" value="Submit" id="lgButton">
+    </form>
+
+    <!-- Add necessary JavaScript libraries -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script> -->
+    <script>
+        let forDepartment = [];
+        let forYear = [];
+        let forProgramme = [];
+        let forRole = [];
+        function logSelectedValues() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach((checkbox) => {
+        const type = checkbox.getAttribute('name').toLowerCase();
+        if(type.includes('depttype')) {
+            forDepartment.push(checkbox.value);
+        } else if(type.includes('yeartypes')) {
+            forYear.push(checkbox.value);
+        } else if(type.includes('programmes')) {
+            forProgramme.push(checkbox.value);
+        } else if(type.includes('student')) {
+            forRole.push(checkbox.value);
+        } else if(type.includes('faculty')) {
+            forRole.push(checkbox.value);
+        } else if(type.includes('hod')) {
+            forRole.push(checkbox.value);
+        }
+    });
+            console.log('Department Types:', forDepartment);
+            console.log('Year Types:', forYear);
+            console.log('Programme Types:', forProgramme);
+            console.log('Role Types:', forRole);
+            forDepartment = [];
+            forYear = [];
+            forProgramme = [];
+            forRole = [];
+        }
+        document.getElementById('noticeForm').addEventListener('submit', function(event) {
+            // event.preventDefault();
+            logSelectedValues(); 
+        });
+    </script>
+</body>
+</html>
+
