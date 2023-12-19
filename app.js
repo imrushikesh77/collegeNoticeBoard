@@ -8,8 +8,14 @@ const Notice = require("./models/notice.model.js");
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+app.set('view engine', 'ejs') ;
+app.use('/loginoptions',async(req,res)=>{
+    res.render('loginoptions.ejs' );
+});
 app.use(express.static('./public'));
-app.set('view engine', 'ejs');
+
 
 
 app.use("/admin",adminRoutes);
@@ -20,7 +26,8 @@ app.use("/",async(req,res)=>{
         $in: [/student/]
         }
     }).sort({ createdAt: -1});
-    res.render("index.ejs",{notice});
+    let count  = notice.length;
+    res.render("index.ejs",{notice,count});
 });
 
 module.exports = app;
