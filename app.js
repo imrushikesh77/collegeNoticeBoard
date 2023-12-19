@@ -7,12 +7,23 @@ const teacherRoutes = require("./routes/teacher.routes.js");
 const noticeRoutes = require("./routes/notice.routes.js");
 const Notice = require("./models/notice.model.js");
 
+
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
+
+
+
+app.set('view engine', 'ejs') ;
+app.use('/loginoptions',async(req,res)=>{
+    res.render('loginoptions.ejs' );
+});
+app.use(express.static('./public'));
+
+
 
 
 app.use("/loginoptions",async(req,res)=>{

@@ -1,14 +1,13 @@
 const Notice = require("../models/notice.model.js");
-const User = require("../models/user.model.js");
+const userModel = require(`../models/user.model.js`);
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 dotenv.config({
     path: "./.env",
 
-});
 const SECRET_KEY = process.env.SECRET_KEY;
-
+// console.log(SECRET_KEY);
 const getLogin = async(req,res) => {
   // console.log(SECRET_KEY);
     try {
@@ -78,6 +77,7 @@ const getDashboard = async(req,res) => {
         catch (error) {
             console.log("Error in get dashboard",error.message);
             return res.redirect("/admin/login");
+
         }   
 }
 

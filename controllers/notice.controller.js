@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 dotenv.config("../.env");
 const SECRET_KEY = process.env.SECRET_KEY;
 
-
 const getAddNotice = async(req, res) => {
     try {
         let token = req.cookies.access_token;
