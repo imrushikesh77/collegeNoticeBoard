@@ -3,15 +3,25 @@ const userModel = require(`../models/user.model.js`);
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
-dotenv.config({path: `./config.env`});
+
+dotenv.config({
+    path: "./.env",
+});
+
 const SECRET_KEY = process.env.SECRET_KEY;
 // console.log(SECRET_KEY);
 const getLogin = async(req,res) => {
+  // console.log(SECRET_KEY);
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
-        if (token && user.role === "admin") {
-          return res.redirect("/admin/dashboard");
+        if (token) {
+          let user = jwt.verify(token, SECRET_KEY);
+          if (user.role === "admin") {
+            return res.redirect("/admin/dashboard");
+          }
+          else {
+            return res.redirect("/teacher/dashboard");
+          }
         } else {
           return res.render("login.ejs");
         }
@@ -23,15 +33,17 @@ const getLogin = async(req,res) => {
 
 const postLogin = async(req,res) => {
     const { email, password } = req.body;
+    // console.log(email,password);
     try {
-      const existingUser = await userModel.findOne({ email: email });
+      const existingUser = await User.findOne({ email: email });
+      // console.log(existingUser);
       if (!existingUser) {
-        return res.status(404).render("login.ejs");
+        return res.status(401).render("login.ejs");
       }
       const matchPassword = await bcrypt.compare(password, existingUser.password);
   
       if (!matchPassword) {
-        return res.status(404).render("login.ejs");
+        return res.status(401).render("login.ejs");
       }
       const token = jwt.sign(
         {
@@ -66,7 +78,9 @@ const getDashboard = async(req,res) => {
       }
         catch (error) {
             console.log("Error in get dashboard",error.message);
+
             return res.redirect("/admin/login ");
+
         }   
 }
 
