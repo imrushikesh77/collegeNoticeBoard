@@ -461,11 +461,11 @@
     const pdfFile = document.getElementById('pdfFile').files[0];
     const date = document.getElementById('date').value;
 
-    console.log("title", title);
-    console.log("description", description);
-    console.log("pdfFile", pdfFile);
-    console.log("date", date);
-    
+    // console.log("title", title);
+    // console.log("description", description);
+    // console.log("pdfFile", pdfFile);
+    // console.log("date", date);
+
     const form = document.getElementById('noticeForm');
     const submitButton = form.querySelector('button[type="submit"]');
     const formData = new FormData();
@@ -473,29 +473,17 @@
     formData.append('description', description);
     formData.append('pdfFile', pdfFile);
     formData.append('noticeDate', date);
-    for (const department of forDepartment) {
-    formData.append('forDepartment', department);
+    formData.append('forDepartment', forDepartment);
+    formData.append('forYear', forYear);
+    formData.append('forProgramme', forProgramme);
+    formData.append('forRole', forRole);
+    
+    for(const pair of formData.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]);
     }
-
-    for (const year of forYear) {
-        formData.append('forYear', year);
-    }
-
-    for (const programme of forProgramme) {
-        formData.append('forProgramme', programme);
-    }
-
-    for (const role of forRole) {
-        formData.append('forRole', role);
-    }
-    console.log(formData);
     const apiUrl = 'http://localhost:8000/notice/add-notice';
 
-    axios.post(apiUrl, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    })
+    axios.post(apiUrl, formData)
     .then((response) => {
         console.log('Notice added successfully', response);
     })

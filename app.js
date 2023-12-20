@@ -27,6 +27,7 @@ app.use("/",async(req,res)=>{
         $in: [/student/]
         }
     }).sort({ createdAt: -1});
+    // console.log(notice);
     const count = notice.length;
     res.render("index.ejs",{notice,count});
 });

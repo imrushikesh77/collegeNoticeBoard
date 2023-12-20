@@ -33,14 +33,6 @@ router.get("/logout", getLogout);
 
 router.get("/dashboard", getDashboard);
 
-router.route("/add-notice")
-        .get(getAddNotice)
-        .post(upload.single("uploadFile"),postAddNotice);
-
-router.delete("/delete-notice/:id", deleteNotice);
-
-router.get("/update-notice", getUpdateNotice);
-router.patch("/update-notice/:id", updateNotice);
 
 router.route("/add-user")
         .get(getAddUser)
@@ -51,5 +43,9 @@ router.get("/view-users", getViewUser);
 router.delete("/delete-user/:id", deleteUser);
 
 router.patch("/update-user/:id", updateUser);
+
+router.route("*", (req, res) => {
+    return res.send("404 Not Found");
+});
 
 module.exports = router;

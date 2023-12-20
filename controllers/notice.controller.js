@@ -6,7 +6,9 @@ dotenv.config("../.env");
 const SECRET_KEY = process.env.SECRET_KEY;
 
 
+
 const getAddNotice = async(req, res) => {
+    // console.log("get add notice");
     try {
         let token = req.cookies.access_token;
         if (token) {
@@ -22,11 +24,10 @@ const getAddNotice = async(req, res) => {
 
 const postAddNotice = async(req, res) => {
     try {
-        console.log("req.params",req.params);
-        console.log("req.body",req.body);
         let token = req.cookies.access_token;
         if (token) {
             let user = jwt.verify(token, SECRET_KEY);
+            const { title, description, forRole, forDepartment, forProgramme, forYear, noticeDate } = req.body;
             let noticeDownloadLink = "";
             if (req.file) {
                 noticeDownloadLink = req.protocol + "://" + req.get("host") + "/noticeFiles/" + req.file.filename;
@@ -36,7 +37,6 @@ const postAddNotice = async(req, res) => {
             }
             const noticeID = uuidv4();
             let noticeDeleteLink = req.protocol + "://" + req.get("host") + "/notice/delete/" + noticeID;
-            const { title, description } = req.body;
             const newNotice = new Notice({
                 title,
                 description,
@@ -44,11 +44,16 @@ const postAddNotice = async(req, res) => {
                 download: noticeDownloadLink,
                 noticeDeleteLink,
                 author: user._id,
-                forRole: req.body.forRole,
-                forDepartment: req.body.forDepartment
+                forRole: forRole,
+                forDepartment: forDepartment,
+                forProgramme: forProgramme,
+                forYear: forYear,
+                noticeDate: noticeDate
             });
             await newNotice.save();
+            // return res.redirect("/admin/dashboard");
             if (user.role === "admin") {
+                console.log(user.role);
                 return res.redirect("/admin/dashboard");
             } else {
                 return res.redirect("/teacher/dashboard");

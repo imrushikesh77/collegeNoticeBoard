@@ -23,7 +23,7 @@ const noticeSchema = new mongoose.Schema({
     type: Date,
     default: getIndianDate(),
   },
-  forProgram: {
+  forProgramme: {
     type: [String],
   },
   forDepartment: {

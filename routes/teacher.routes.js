@@ -29,12 +29,6 @@ router.get("/logout",getLogout);
 
 router.get("/dashboard",getDashboard);
 
-router.get("/add-notice",getAddNotice).post("/add-notice",postAddNotice);
-
-router.delete("/delete-notice/:id",deleteNotice);
-
-router.patch("/update-notice/:id",updateNotice);
-
 router.get("/add-user",getAddUser).post("/add-user",postAddUser);
 
 router.get("/view-user", getViewUser);
@@ -42,6 +36,10 @@ router.get("/view-user", getViewUser);
 router.delete("/delete-user/:id",deleteUser);
 
 router.patch("/update-user/:id",updateUser);
+
+router.route("*", (req, res) => {
+    return res.send("404 Not Found");
+});
 
 
 

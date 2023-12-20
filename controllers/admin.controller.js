@@ -10,7 +10,6 @@ dotenv.config({
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const getLogin = async(req,res) => {
-  // console.log(SECRET_KEY);
     try {
         let token = req.cookies.access_token;
         if (token) {
@@ -64,13 +63,15 @@ const postLogin = async(req,res) => {
 const getDashboard = async(req,res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
-        if (token && user.role === "admin") {
+        if (token) {
+          let user = jwt.verify(token, SECRET_KEY);
+          if (user.role !== "admin") {
             let noticesByMe = await Notice.find({author: user._id}).sort({ createdAt: -1});
             let allNotices = await Notice.find().sort({ createdAt: -1});
             let noticesByMeCount = noticesByMe.length;
             let allNoticesCount = allNotices.length;
             return res.render("adminDashboard.ejs",{noticesByMe,noticesByMeCount,allNotices,allNoticesCount});
+          }
         } else {
           return res.redirect("/admin/login");
         }

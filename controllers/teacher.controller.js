@@ -7,9 +7,14 @@ const SECRET_KEY = process.env.SECRET_KEY;
 const getLogin = async(req,res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
-        if (token && user.role !== "admin") {
-          return res.redirect("/teacher/dashboard");
+        if (token) {
+          let user = jwt.verify(token, SECRET_KEY);
+          if(user.role !== "admin"){
+            return res.redirect("/teacher/dashboard");
+          }
+          else{
+            return res.redirect("/teacher/login");
+          }
         } else {
           return res.render("login.ejs");
         }
@@ -51,8 +56,9 @@ const postLogin = async(req,res) => {
 const getDashboard = async(req,res) => {
     try {
         let token = req.cookies.access_token;
-        let user = jwt.verify(token, SECRET_KEY);
-        if (token && user.role !== "admin") {
+        if (token) {
+          let user = jwt.verify(token, SECRET_KEY);
+          if(user.role !== "admin"){
             let noticesByMe = await Notice.find({author: user._id}).sort({ createdAt: -1});
             let noticesForMe = await Notice.find(
                 {
@@ -76,6 +82,11 @@ const getDashboard = async(req,res) => {
                 }
             );
             return res.render("teacherDashboard.ejs",{noticesByMe,noticesForMe,noticesByMeCount,noticesForMeCount});
+          }
+          else{
+            return res.redirect("/teacher/login");
+          }
+            
         } else {
           return res.redirect("/teacher/login");
         }
